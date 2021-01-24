@@ -13,7 +13,7 @@
 #### 联系作者
 
 1.  如需体验或者购买最新版系统请添加作者微信
-2.  作者微信（添加时请备注“互动课堂”）：<img src="https://gitee.com/jackieliu789/yunfei-jxc/raw/master/image/kefu.png" alt="云飞进销存" width="25%"/>
+2.  作者微信（添加时请备注“互动课堂”）：<img src="https://github.com/Jackieliu789/yunfei-online-class/raw/master/images/kefu.png" alt="云飞进销存" width="25%"/>
 
 #### 软件截图
 
