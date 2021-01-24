@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.yunfeisoft</groupId>
+    <artifactId>yunfei-content-pay</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>content-core</module>
+        <module>content-web</module>
+        <module>content-business</module>
+        <module>content-pigeon</module>
+    </modules>
+
+    <properties>
+        <spring.version>4.3.6.RELEASE</spring.version>
+        <hibernate.version>5.2.8.Final</hibernate.version>
+        <serlvet-api.version>2.5</serlvet-api.version>
+        <jackson.version>2.8.3</jackson.version>
+        <commons-io.version>3.0.1</commons-io.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <!-- logger -->
+        <slf4j.version>1.7.21</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <!-- test lib -->
+        <junit.version>4.12</junit.version>
+        <!-- build args -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${serlvet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <!--开发环境-->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:postgresql://127.0.0.1:5432/content_pay?charSet=utf-8]]></jdbc.url>
+                <jdbc.username>content_pay</jdbc.username>
+                <jdbc.password>123456</jdbc.password>
+
+                <jdbc.initialSize>0</jdbc.initialSize>
+                <jdbc.maxActive>20</jdbc.maxActive>
+                <jdbc.minIdle>1</jdbc.minIdle>
+                <jdbc.maxWait>60000</jdbc.maxWait>
+                <jdbc.timeBetweenEvictionRunsMillis>60000</jdbc.timeBetweenEvictionRunsMillis>
+                <jdbc.minEvictableIdleTimeMillis>25200000</jdbc.minEvictableIdleTimeMillis>
+                <jdbc.removeAbandonedTimeout>1800</jdbc.removeAbandonedTimeout>
+
+                <redis.host>127.0.0.1</redis.host>
+                <redis.port>6379</redis.port>
+                <redis.password></redis.password>
+                <redis.maxIdle>8</redis.maxIdle>
+                <redis.testOnBorrow>true</redis.testOnBorrow>
+                <redis.timeout>100000</redis.timeout>
+                <redis.maxWaitMillis>15000</redis.maxWaitMillis>
+                <redis.testWhileIdle>false</redis.testWhileIdle>
+                <redis.testOnReturn>false</redis.testOnReturn>
+                <redis.maxTotal>1024</redis.maxTotal>
+
+                <!--其他-->
+                <session.active.time>30</session.active.time>
+                <log.open>true</log.open>
+                <!-- 请求附件域名路径 -->
+                <file.request.url>http://localhost:80/files</file.request.url>
+                <!--local模式上传文件路径-->
+                <file.local.path>E:/files</file.local.path>
+                <!-- web后台请求地址 -->
+                <web.domain>http://localhost:8888/content-web</web.domain>
+
+                <push.topic>push:topic</push.topic>
+                <netty.port>8488</netty.port>
+                <netty.hand.url>ws://0.0.0.0:8488/yunfeisocket</netty.hand.url>
+                <netty.url>ws://127.0.0.1:8488/yunfeisocket</netty.url>
+
+                <log.level>DEBUG</log.level>
+
+                <wx.app.id></wx.app.id>
+                <wx.app.secret></wx.app.secret>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.bpmn</include>
+                    <include>**/*.png</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.bpmn</include>
+                    <include>**/*.png</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
