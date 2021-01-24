@@ -1,6 +1,10 @@
 # 云飞在线互动课堂
 
 ```html
+图片如果不显示，请去码云：https://gitee.com/jackieliu789/yunfei-course
+```
+
+```html
 1：支持手机端、PC端一键开播
 2：支持老师、机构入驻
 3：支持上传音频、视频知识付费
@@ -12,6 +16,9 @@
 
 #### 联系作者
 
+```html
+图片如果不显示，请去码云：https://gitee.com/jackieliu789/yunfei-course
+```
 1.  如需体验或者购买最新版系统请添加作者微信
 2.  作者微信（添加时请备注“互动课堂”）：<img src="https://github.com/Jackieliu789/yunfei-online-class/raw/master/images/kefu.png" alt="云飞进销存" width="25%"/>
 
