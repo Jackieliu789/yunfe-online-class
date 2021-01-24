@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springContextHelper" class="com.applet.utils.SpringContextHelper"/>
+
+    <bean id="viewExceptionHandler" class="com.applet.interceptor.ViewExceptionHandler"/>
+
+    <bean id="serializer" class="com.applet.serialize.HessianSerializer"/>
+
+    <bean id="sysConfigCache" class="com.yunfeisoft.utils.SysConfigCache"/>
+
+    <bean id="userSession" class="com.applet.session.ServletSession"/>
+
+    <bean id="generateUserSig" class="com.yunfeisoft.utils.GenerateUserSig"/>
+    <bean id="tEduBoardUserSig" class="com.yunfeisoft.utils.TEduBoardUserSig"/>
+
+    <bean id="domainModel" class="com.applet.session.DomainModel">
+        <property name="webDomain" value="${web.domain}"/>
+    </bean>
+
+    <bean id="domainModelContext" class="com.applet.sql.record.DomainModelContext"/>
+
+    <bean id="socketServer" class="com.applet.netty.WebAsyncSocketServer">
+        <property name="bindPort" value="${netty.port}"/>
+        <property name="webSocketUrl" value="${netty.hand.url}"/>
+    </bean>
+
+    <bean id="pageSql" class="com.applet.sql.page.PostgresqlPage"/>
+
+    <bean id="fileOperation" class="com.applet.file.LocalDiskFileOperation">
+        <property name="rootPath" value="${file.local.path}"/>
+    </bean>
+    <bean id="threadPoolManager" class="com.applet.thread.ThreadPoolManager" destroy-method="shutdownNow"/>
+
+    <bean id="wxOpenApi" class="com.applet.weixin.WXOpenApi">
+        <property name="appId" value="${wx.app.id}"/>
+        <property name="appSecret" value="${wx.app.secret}"/>
+        <property name="redisTemplate" ref="redisTemplate"/>
+        <property name="fileOperation" ref="fileOperation"/>
+    </bean>
+
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxWaitMillis" value="${redis.maxWaitMillis}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+        <property name="testWhileIdle" value="${redis.testWhileIdle}"/>
+        <property name="testOnReturn" value="${redis.testOnReturn}"/>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="poolConfig" ref="poolConfig"/>
+        <property name="port" value="${redis.port}"/>
+        <property name="hostName" value="${redis.host}"/>
+        <property name="password" value="${redis.password}"/>
+        <property name="timeout" value="${redis.timeout}"></property>
+    </bean>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+</beans>

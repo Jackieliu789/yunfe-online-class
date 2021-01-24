@@ -1,0 +1,5 @@
+1 安装applet-common-1.3-SNAPSHOT.jar到本地仓库
+
+    a) 把applet-common-1.3-SNAPSHOT.jar拷贝到C盘
+    b) 命令窗口执行：mvn install:install-file -Dfile=C:/applet-common-1.3-SNAPSHOT.jar -DgroupId=com.applet -DartifactId=applet-common -Dversion=1.3-SNAPSHOT -Dpackaging=jar
+    c) 把applet-common-1.3-SNAPSHOT.pom拷贝到 “本地maven仓库路径/com/applet/applet-common/1.3-SNAPSHOT” 路径中
