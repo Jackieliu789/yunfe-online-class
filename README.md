@@ -17,6 +17,7 @@
 
 #### 软件截图
 
+图片如果不显示，请去码云：https://gitee.com/jackieliu789/yunfei-course
 ![云飞在线互动教育](https://gitee.com/jackieliu789/yunfei-course/raw/master/images/1.png)
 ![云飞在线互动教育](https://gitee.com/jackieliu789/yunfei-course/raw/master/images/2.png)
 ![云飞在线互动教育](https://gitee.com/jackieliu789/yunfei-course/raw/master/images/3.png)
